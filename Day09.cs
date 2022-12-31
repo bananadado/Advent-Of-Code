@@ -9,7 +9,6 @@ namespace Day9
 {
     internal class Day09
     {
-
         static (int, int) mossa((int x, int y) currentCoordsH, (int x, int y) currentCoordsT)
         {
             if (currentCoordsH.y == currentCoordsT.y && currentCoordsH.x == currentCoordsT.x) { } //check if the same
