@@ -27,7 +27,6 @@ namespace Day4
                     {
                         overlap1++;
                     }
-
                     if ((int.Parse(parts[0].Split('-')[0]) <= int.Parse(parts[1].Split('-')[0]) && int.Parse(parts[0].Split('-')[1]) >= int.Parse(parts[1].Split('-')[0]))|| int.Parse(parts[1].Split('-')[0])<=int.Parse(parts[0].Split('-')[0]) && int.Parse(parts[1].Split('-')[1])>= int.Parse(parts[0].Split('-')[0]))
                     {
                         overlap2++;
