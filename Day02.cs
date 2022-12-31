@@ -80,7 +80,6 @@ namespace Day2._0
                     {
                         score += 6;
                     }
-                    
                 }
             }
             Console.WriteLine(score);
