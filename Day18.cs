@@ -192,7 +192,6 @@ namespace Day18
                 coord.y = list[1];
                 coord.z = list[2];
                 coords.Add(coord);
-                Console.WriteLine(coord);
             }
             part1();
             part2();
