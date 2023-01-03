@@ -1,6 +1,10 @@
 #DISCLAIMER
-#I did manage to get part 1 on the day in the most ridiculous fashion possible which I should put in the long description of this code
-#I didn't manage to do this one on the day and ended up doing it on the 24th. I used someone else's solution to help with mine as they did exactly what I was trying to achieve.
+#I did manage to get part 1 on the day in the most ridiculous fashion possible which I should put here:
+#So I had made a program for part 1 of day 16 which is completely wrong: gave an output of 600.
+#Because I was frustrated with the wrong answer I decided to use the output for my friend's input as a sort of ratio with his actual output - 1820/525. 
+#I then multiplied my answer by this, and lo and behold: a correct answer! (600*(1820/525) = 2080)
+
+#I didn't manage to do this one on the day and ended up doing it on the 24th. I needed a bit of help :(
 
 from collections import deque, defaultdict
 
