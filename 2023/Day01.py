@@ -18,8 +18,9 @@ part2 = 0
 for line in inp:
     digits = [c for c in line if c.isdigit()]
     part1 += int(digits[0] + digits[-1])
+
     for key in numDict.keys():
-        line = line.replace(key, f"{key}{numDict[key]}{key}")
+        line = line.replace(key, f"{key}{numDict[key]}{key}")  # This handles the annoying "twone" case etc.
     digits = [c for c in line if c.isdigit()]
     part2 += int(digits[0] + digits[-1])
 
