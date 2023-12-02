@@ -7,9 +7,9 @@ part1 = 0
 part2 = 0
 for line in inp:
     reject = False
-    bMax = 0; rMax = 0; gMax = 0
+    rMax, gMax, bMax = 0, 0, 0
     for i in range(len(line)):
-        blue = 0; red = 0; green = 0
+        red, green, blue = 0, 0, 0
         for j in line[i]:
             if j.split()[1] == "blue":
                 blue += int(j.split()[0])
@@ -20,11 +20,12 @@ for line in inp:
 
         if red > 12 or green > 13 or blue > 14:
             reject = True
-        if i == len(line) - 1 and not reject and red <= 12 and green <= 13 and blue <= 14:
-            part1 += count
 
         bMax = max(blue, bMax); rMax = max(red, rMax); gMax = max(green, gMax)
-    part2 += bMax * rMax * gMax
+
+    if not reject:
+        part1 += count
+    part2 += rMax * gMax * bMax
     count += 1
 
 print(f"Part 1: {part1}")
