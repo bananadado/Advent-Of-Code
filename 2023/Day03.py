@@ -3,7 +3,6 @@
 # AoC is not looking good for me anymore ;-;
 
 import re
-from itertools import count
 
 with open("input.txt", "r") as f:
     inp = [line.strip() for line in f.readlines()]
@@ -18,11 +17,7 @@ def isSymbol(row, col):
 
 
 def isAddable(row, col):
-    for i in range(3):
-        for j in range(3):
-            if isSymbol(row + i - 1, col + j - 1):
-                return True
-    return False
+    return any(isSymbol(row + i - 1, col + j - 1) for i in range(3) for j in range(3))
 
 
 def extractInts(element):
@@ -30,11 +25,9 @@ def extractInts(element):
 
 
 def findNum(row, col):
-    for i in count(col):
-        if not inp[row][i].isdigit():
+    for i in range(col, len(inp[0]) + 1):
+        if i == len(inp[0]) or not inp[row][i].isdigit():
             return int(extractInts(inp[row][:i].split('.')[-1])[-1])
-        if i == len(inp[0]) - 1:
-            return int(extractInts(inp[row].split('.')[-1])[-1])
 
 
 def ratio(row, col):
