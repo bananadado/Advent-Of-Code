@@ -17,7 +17,7 @@ def isSymbol(row, col):
     return False
 
 
-def addable(row, col):
+def isAddable(row, col):
     for i in range(3):
         for j in range(3):
             if isSymbol(row + i - 1, col + j - 1):
@@ -67,9 +67,9 @@ for i, line in enumerate(inp):
         if len(extractInts(element)) == 0:
             continue
 
-        col = sum([(len(x) + 1 if x != '' else 1) for x in spl[:j]])
+        col = sum([len(x) + 1 for x in spl[:j]])
         for k in range(col, col + len(element)):
-            if addable(i, k):
+            if isAddable(i, k):
                 part1 += sum(extractInts(element))
                 break
 
