@@ -1,5 +1,5 @@
 # Not my proudest work
-# I had a sort of OBO error I didn't spot for wayyyy too long
+# I had a sort of OB1 error I didn't spot for wayyyy too long
 # AoC is not looking good for me anymore ;-;
 
 import re
