@@ -10,6 +10,6 @@ def ways(inp):
 
 
 with open("input.txt", "r") as f:
-    lines = f.readlines()
-    print(f"Part 1: {ways([[int(x) for x in line.strip().split(':')[1].split()] for line in lines])}")
-    print(f"Part 2: {ways([[int(''.join(line.strip().split(':')[1].split()))] for line in lines])}")
+    lines = [[int(x) for x in line.strip().split(':')[1].split()] for line in f.readlines()]
+    print(f"Part 1: {ways(lines)}")
+    print(f"Part 2: {ways([[int(''.join(str(x) for x in line))] for line in lines])}")
