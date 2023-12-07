@@ -3,7 +3,7 @@ with open("input.txt", "r") as f:
     inp = [line.strip().split() for line in f.readlines()]
 
 strength1 = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2']
-strength2 = ['A', 'K', 'Q',  'T', '9', '8', '7', '6', '5', '4', '3', '2', 'J']
+strength2 = ['A', 'K', 'Q', 'T', '9', '8', '7', '6', '5', '4', '3', '2', 'J']
 def evalHand(hand):
     c = set(hand)
     if len(c) == 1:
