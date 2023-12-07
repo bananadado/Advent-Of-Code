@@ -26,12 +26,14 @@ def cmpIter(cards1, cards2, strength):
             return 1
         if strength.index(a) > strength.index(b):
             return -1
+
 def cmpHand1(hand1, hand2):
     score1 = evalHand(hand1[0])
     score2 = evalHand(hand2[0])
     if score1 == score2:
         return cmpIter(hand1[0], hand2[0], strength1)
     return score1 - score2
+
 def cmpHand2(hand1, hand2):
     score1 = max(evalHand(hand1[0].replace('J', x)) for x in strength1)
     score2 = max(evalHand(hand2[0].replace('J', x)) for x in strength1)
