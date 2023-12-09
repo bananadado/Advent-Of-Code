@@ -15,10 +15,10 @@ def nextTerms(sequence):
 
 p1 = 0
 p2 = 0
-for i in inp:
-    next = nextTerms([int(x) for x in i])
-    p1 += int(i[-1]) + next[-1]
-    p2 += int(i[0]) - next[0]
+for l in inp:
+    next = nextTerms([int(x) for x in l])
+    p1 += int(l[-1]) + next[-1]
+    p2 += int(l[0]) - next[0]
 
 print(f"Part 1: {p1}")
 print(f"Part 2: {p2}")
