@@ -1,5 +1,5 @@
 # awful, awful day. Bad code too
-# Part 2 essentially just searches outwards as in Day 18 of 2022
+# Part 2 essentially just searches outwards as in Day 18 of 2022. Takes ~2s to run
 # A more optimal solution would be to consider a line (e.g. ..|...|..|.|..),
 # where it is evident that the 2nd and 4th gaps would be inside the loop.
 from collections import deque
@@ -21,14 +21,14 @@ for i in range(len(inp)):
         inp[i][j] = pipeMap[(inp[i - 1][j] in '7F|', inp[i][j - 1] in 'LF-', inp[i + 1][j] in 'LJ|', inp[i][j + 1] in '7J-')]
         break
 
-
 # Part 1
-cardinal = {'N': (-1, 0), 'E': (0, 1), 'S': (1, 0), 'W': (0, -1)}
-def checkDir(d, row, col, dist):
+cardinal = {'U': (-1, 0), 'L': (0, -1), 'D': (1, 0), 'R': (0, 1)}
+def checkDir(row, col, d, dist):
     rMap, cMap = cardinal[d]
     if not explored[row + rMap][col + cMap]:
         explored[row + rMap][col + cMap] = True
         q.append((row + rMap, col + cMap, dist + 1))
+
 
 pipeMap = {v: k for k, v in pipeMap.items()}
 high = 0
@@ -38,13 +38,13 @@ while q:
 
     n, w, s, e = pipeMap[inp[r][c]]
     if n:
-        checkDir('N', r, c, dist)
+        checkDir(r, c, 'U', dist)
     if w:
-        checkDir('W', r, c, dist)
+        checkDir(r, c, 'L', dist)
     if s:
-        checkDir('S', r, c, dist)
+        checkDir(r, c, 'D', dist)
     if e:
-        checkDir('E', r, c, dist)
+        checkDir(r, c, 'R', dist)
 
 print(f"Part 1: {high}")
 
@@ -55,17 +55,20 @@ def checkNorth(row, col, d, seen):
         seen.add((row - 1, col))
         q.append((row - 1, col, north.get(inp[row][col] + d, d)))
 
+
 south = {'7U': 'R', '7D': 'L', 'FU': 'L', 'FD': 'R'}
 def checkSouth(row, col, d, seen):
     if (row + 1, col) not in seen:
         seen.add((row + 1, col))
         q.append((row + 1, col, south.get(inp[row][col] + d, d)))
 
+
 west = {'JR': 'D', 'JL': 'U', '7R': 'U', '7L': 'D'}
 def checkWest(row, col, d, seen):
     if (row, col - 1) not in seen:
         seen.add((row, col - 1))
         q.append((row, col - 1, west.get(inp[row][col] + d, d)))
+
 
 east = {'LR': 'U', 'LL': 'D', 'FR': 'D', 'FL': 'U'}
 def checkEast(row, col, d, seen):
@@ -74,6 +77,7 @@ def checkEast(row, col, d, seen):
         q.append((row, col + 1, east.get(inp[row][col] + d, d)))
 
 
+antiCardinal = {(-1, 0): 'D', (0, -1): 'R', (1, 0): 'U', (0, 1): 'L'}
 for i in range(len(explored)):
     for j in range(len(explored[0])):
         if explored[i][j] or inp[i][j] in 'OI':
@@ -135,18 +139,10 @@ for i in range(len(explored)):
                     if e:
                         checkEast(r, c, d, seen)
                 else:
-                    if (r + 1, c) not in seen and (r + 1, c) not in loopSet:
-                        seen.add((r + 1, c))
-                        q.append((r + 1, c, 'U'))
-                    if (r - 1, c) not in seen and (r - 1, c) not in loopSet:
-                        seen.add((r - 1, c))
-                        q.append((r - 1, c, 'D'))
-                    if (r, c - 1) not in seen and (r, c - 1) not in loopSet:
-                        seen.add((r, c - 1))
-                        q.append((r, c - 1, 'R'))
-                    if (r, c + 1) not in seen and (r, c + 1) not in loopSet:
-                        seen.add((r, c - 1))
-                        q.append((r, c - 1, 'L'))
+                    for (rMap, cMap), k in antiCardinal.items():
+                        if (r + rMap, c + cMap) not in seen and (r + rMap, c + cMap) not in loopSet:
+                            seen.add((r + rMap, c + cMap))
+                            q.append((r + rMap, c + cMap, k))
 
         mark = 'O' if outside else 'I'
         for r, c in loopSet:
