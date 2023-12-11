@@ -23,26 +23,12 @@ for i in range(len(inp)):
 
 
 # Part 1
-def checkNorth1(row, col):
-    if not explored[row - 1][col]:
-        explored[row - 1][col] = True
-        q.append((row - 1, col, dist + 1))
-
-def checkSouth1(row, col):
-    if not explored[row + 1][col]:
-        explored[row + 1][col] = True
-        q.append((row + 1, col, dist + 1))
-
-def checkWest1(row, col):
-    if not explored[row][col - 1]:
-        explored[row][col - 1] = True
-        q.append((row, col - 1, dist + 1))
-
-def checkEast1(row, col):
-    if not explored[row][col + 1]:
-        explored[row][col + 1] = True
-        q.append((row, col + 1, dist + 1))
-
+cardinal = {'N': (-1, 0), 'E': (0, 1), 'S': (1, 0), 'W': (0, -1)}
+def checkDir(d, row, col, dist):
+    rMap, cMap = cardinal[d]
+    if not explored[row + rMap][col + cMap]:
+        explored[row + rMap][col + cMap] = True
+        q.append((row + rMap, col + cMap, dist + 1))
 
 pipeMap = {v: k for k, v in pipeMap.items()}
 high = 0
@@ -52,37 +38,37 @@ while q:
 
     n, w, s, e = pipeMap[inp[r][c]]
     if n:
-        checkNorth1(r, c)
+        checkDir('N', r, c, dist)
     if w:
-        checkWest1(r, c)
+        checkDir('W', r, c, dist)
     if s:
-        checkSouth1(r, c)
+        checkDir('S', r, c, dist)
     if e:
-        checkEast1(r, c)
+        checkDir('E', r, c, dist)
 
 print(f"Part 1: {high}")
 
 # Part 2
 north = {'LU': 'R', 'LD': 'L', 'JU': 'L', 'JD': 'R'}
-def checkNorth2(row, col, d, seen):
+def checkNorth(row, col, d, seen):
     if (row - 1, col) not in seen:
         seen.add((row - 1, col))
         q.append((row - 1, col, north.get(inp[row][col] + d, d)))
 
 south = {'7U': 'R', '7D': 'L', 'FU': 'L', 'FD': 'R'}
-def checkSouth2(row, col, d, seen):
+def checkSouth(row, col, d, seen):
     if (row + 1, col) not in seen:
         seen.add((row + 1, col))
         q.append((row + 1, col, south.get(inp[row][col] + d, d)))
 
 west = {'JR': 'D', 'JL': 'U', '7R': 'U', '7L': 'D'}
-def checkWest2(row, col, d, seen):
+def checkWest(row, col, d, seen):
     if (row, col - 1) not in seen:
         seen.add((row, col - 1))
         q.append((row, col - 1, west.get(inp[row][col] + d, d)))
 
 east = {'LR': 'U', 'LL': 'D', 'FR': 'D', 'FL': 'U'}
-def checkEast2(row, col, d, seen):
+def checkEast(row, col, d, seen):
     if (row, col + 1) not in seen:
         seen.add((row, col + 1))
         q.append((row, col + 1, east.get(inp[row][col] + d, d)))
@@ -119,10 +105,9 @@ for i in range(len(explored)):
         if not outside:
             rt, ct = list(loopSet)[0]
             q.append((rt, ct, ''))
-            seen = set()
+            seen = {(rt, ct)}
             while q:
                 r, c, d = q.popleft()
-                seen.add((r, c))
 
                 if inp[r][c] == 'I':
                     break
@@ -142,13 +127,13 @@ for i in range(len(explored)):
                 if explored[r][c]:
                     n, w, s, e = pipeMap.get(inp[r][c])
                     if n:
-                        checkNorth2(r, c, d, seen)
+                        checkNorth(r, c, d, seen)
                     if w:
-                        checkWest2(r, c, d, seen)
+                        checkWest(r, c, d, seen)
                     if s:
-                        checkSouth2(r, c, d, seen)
+                        checkSouth(r, c, d, seen)
                     if e:
-                        checkEast2(r, c, d, seen)
+                        checkEast(r, c, d, seen)
                 else:
                     if (r + 1, c) not in seen and (r + 1, c) not in loopSet:
                         seen.add((r + 1, c))
