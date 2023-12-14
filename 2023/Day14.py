@@ -36,6 +36,6 @@ for i in count():
     arr = tuple(tuple(x) for x in inp)
     if arr in seen:
         dex = seen[arr]
-        print(f"Part 2: {score([k for k, v in seen.items()][(10**9 - dex - 1)%(i - dex) + dex])}")
+        print(f"Part 2: {score([x for x in seen.keys()][(10**9 - dex - 1)%(i - dex) + dex])}")
         quit()
     seen[arr] = i
