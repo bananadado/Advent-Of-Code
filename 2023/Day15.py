@@ -11,7 +11,7 @@ def score(word):
         t %= 256
     return t
 
-print(sum([score(x) for x in inp]))
+print(f"Part 1: {sum([score(x) for x in inp])}")
 
 boxes = defaultdict(lambda: [])
 focal = defaultdict(lambda: 0)
@@ -34,4 +34,4 @@ t = 0
 for k, v in boxes.items():
     for i in range(len(v)):
         t += (k + 1) * (i + 1) * focal[v[i]]
-print(t)
+print(f"Part 2: {t}")
