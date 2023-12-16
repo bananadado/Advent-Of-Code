@@ -3,15 +3,15 @@ with open("input.txt", "r") as f:
     inp = [line.strip() for line in f.readlines()]
 
 move = {'R': (0, 1), 'L': (0, -1), 'U': (-1, 0), 'D': (1, 0)}
-backslash = {'R': 'D', 'D': 'R', 'L': 'U', 'U': 'L'}
+bslash = {'R': 'D', 'D': 'R', 'L': 'U', 'U': 'L'}
 fslash = {'R': 'U', 'D': 'L', 'U': 'R', 'L': 'D'}
 def tile(r, c, d, q, seen, energised):
     if inp[r][c] == '.' and (r, c, d) not in seen:
         q.append((r, c, d))
         seen.add((r, c, d))
-    elif inp[r][c] == '\\' and (r, c, backslash[d]) not in seen:
-        q.append((r, c, backslash[d]))
-        seen.add((r, c, backslash[d]))
+    elif inp[r][c] == '\\' and (r, c, bslash[d]) not in seen:
+        q.append((r, c, bslash[d]))
+        seen.add((r, c, bslash[d]))
     elif inp[r][c] == '/' and (r, c, fslash[d]) not in seen:
         q.append((r, c, fslash[d]))
         seen.add((r, c, fslash[d]))
