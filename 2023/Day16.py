@@ -36,7 +36,7 @@ def tile(r, c, d, q, seen, energised):
     energised[r][c] = True
 
 
-def tot(r1, c1, d1):
+def beam(r1, c1, d1):
     energised = [[False] * len(inp[0]) for i in range(len(inp))]
     seen = set()
     q = deque()
@@ -54,11 +54,11 @@ def tot(r1, c1, d1):
 
 m = 0
 for r in range(len(inp)):
-    m = max(m, tot(r, 0, 'R'))
+    m = max(m, beam(r, 0, 'R'))
     if r == 0:
         print(f"Part 1: {m}")
-    m = max(m, tot(r, len(inp[0]) - 1, 'L'))
+    m = max(m, beam(r, len(inp[0]) - 1, 'L'))
 for c in range(len(inp[0])):
-    m = max(m, tot(0, c, 'D'))
-    m = max(m, tot(len(inp) - 1, c, 'U'))
+    m = max(m, beam(0, c, 'D'))
+    m = max(m, beam(len(inp) - 1, c, 'U'))
 print(f"Part 2: {m}")
