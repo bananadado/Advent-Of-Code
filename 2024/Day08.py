@@ -29,13 +29,12 @@ def find_antinode(c1, c2):
         nx += dx
         ny += dy
 
-
+# thanks flameded for neatening this part 😎
 for freq, positions in antennas.items():
-    n = len(positions)
-    for i in range(n):
-        for j in range(i + 1, n):
-            find_antinode(positions[i], positions[j])
-            find_antinode(positions[j], positions[i])
+    for i, c1 in enumerate(positions):
+        for c2 in positions[i+1:]:
+            find_antinode(c1, c2)
+            find_antinode(c2, c1)
 
 
 print(f"Part 1: {len(p1)}")
