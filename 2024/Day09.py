@@ -38,6 +38,5 @@ def solve(pt2):
     return sum(pos * block_id for pos, block_id in enumerate(disk_layout) if block_id != -1)
 
 
-# Solve for part 1 and part 2
 print(f"Part 1: {solve(False)}")
 print(f"Part 2: {solve(True)}")
