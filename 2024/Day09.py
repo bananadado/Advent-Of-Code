@@ -2,7 +2,7 @@
 with open("input.txt") as f:
     inp = f.read().strip()
 
-# refactoring is hard :( - example solutions helped with this
+# refactoring is hard :( - certain other people/solutions helped me with this (trust me you do not want to see the original)
 def solve(pt2):
     files = [] # (pos, size, ID)
     frees = [] # (pos, size)
