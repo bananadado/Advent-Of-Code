@@ -50,16 +50,13 @@ print(f"Part 1: {",".join(map(str, run(a)))}")
 # the key is that the nth value from the start of the program is affected by the 8^n value a
 # the end of the program is less volatile so you can hone in from the end of the program rather than the start
 # also you need to keep doubling a to make the output length the same as the program length
-a = 1
+a = 8 ** (len(program) - 1) # thank you flameded for this optimisation - otherwise i was just doing a*=2 until len(out) == len(program)
 while True:
     out = run(a)
     if out == program:
         print(f"Part 2: {a}")
         quit()
-    if len(out) < len(program):
-        a *= 2
-    if len(out) == len(program):
-        for j in range(len(program) - 1, -1, -1):
-            if program[j] != out[j]:
-                a += 8**j
-                break
+    for j in range(len(program) - 1, -1, -1):
+        if program[j] != out[j]:
+            a += 8**j
+            break
