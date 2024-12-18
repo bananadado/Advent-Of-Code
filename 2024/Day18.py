@@ -1,7 +1,5 @@
 # very easy today - 328/339, could've been faster but i just didn't read there was a byte restriction and also slow delta somehow idk it felt fast but apparently not
 from collections import deque
-
-# Read input from "input.txt"
 with open("input.txt", "r") as f:
     data = [tuple(map(int, line.strip().split(','))) for line in f.readlines()]
 
