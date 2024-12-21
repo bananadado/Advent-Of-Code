@@ -18,10 +18,10 @@ with open("input.txt", "r") as f:
 
 # using dictionaries here is easier and has faster lookup
 # None is just where the gap is (no paths can go over it)
-numpad = { '7': (0, 0), '8': (0, 1), '9': (0, 2),
-           '4': (1, 0), '5': (1, 1), '6': (1, 2),
-           '1': (2, 0), '2': (2, 1), '3': (2, 2),
-          None: (3, 0), '0': (3, 1), 'A': (3, 2)}
+numpad = { "7": (0, 0), "8": (0, 1), "9": (0, 2),
+           "4": (1, 0), "5": (1, 1), "6": (1, 2),
+           "1": (2, 0), "2": (2, 1), "3": (2, 2),
+          None: (3, 0), "0": (3, 1), "A": (3, 2)}
 
 dpad = {None: (0, 0), "^": (0, 1), "A": (0, 2),
          "<": (1, 0), "v": (1, 1), ">": (1, 2)}
@@ -33,7 +33,7 @@ rdirs = {v: k for k, v in dirs.items()}
 
 def paths(s, e, empty):
     if s == e:
-        return ['A']
+        return ["A"]
 
     dr, dc = e[0] - s[0], e[1] - s[1]
     moves = ""
