@@ -6,4 +6,7 @@ Some solutions may only have a part 2 if I couldn't be bothered to rewrite part 
 
 Also a mishmash of python and C#: I tried to use C# as much as possible as I am currently learning it.
 
-Note: The tierlist was created by all of @Flameded, @ZaDukk and I. Bfs = B tier, sorry for confusion (too much bfs this year)
+Note: The tierlist was created by all of [@Flameded](https://github.com/Flameded), [@ZaDukk](https://github.com/ZaDukk) and I. Bfs = B tier, sorry for confusion (too much bfs this year)
+
+Tierlist:\
+![tierlist](https://github.com/bananadado/Advent-Of-Code/blob/main/2022/AoC2022TierList.png?raw=true)
