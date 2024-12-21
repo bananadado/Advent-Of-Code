@@ -6,5 +6,5 @@ I didn't end up uploading solutions from day 21 onwards (day 21 was absolutley i
 
 I may or may not come back and redo solutions in the future. Day 21 has me very scared.
 
-Tierlist (made in conjunction with [@ZaDukk](https://github.com/ZaDukk) [@Flameded](https://github.com/Flameded)):
+Tierlist (made in conjunction with [@ZaDukk](https://github.com/ZaDukk) [@Flameded](https://github.com/Flameded)):\
 ![tierlist](https://github.com/bananadado/Advent-Of-Code/blob/main/2023/AoC2023TierList.png?raw=true)
