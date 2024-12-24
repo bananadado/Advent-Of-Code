@@ -2,23 +2,23 @@
 # still, this year feels easier than the last
 from collections import defaultdict
 with open("input.txt") as f:
-	inp = f.read().split("\n\n")
-	values = {k: int(v) for k, v in (line.split(": ") for line in inp[0].splitlines())}
-	gates = [line.split(" -> ") for line in inp[1].splitlines()]
-	gates = [(ins.split(), out) for ins, out in gates]
+    inp = f.read().split("\n\n")
+    values = {k: int(v) for k, v in (line.split(": ") for line in inp[0].splitlines())}
+    gates = [line.split(" -> ") for line in inp[1].splitlines()]
+    gates = [(ins.split(), out) for ins, out in gates]
 
 
 pending = gates[:] # deepcopy
 while pending:
-	for i, ((a, op, b), out) in enumerate(pending):
-		if a in values and b in values:
-			av, bv = values[a], values[b]
-			match op:
-				case "AND": values[out] = av & bv
-				case "OR": values[out] = av | bv
-				case "XOR": values[out] = av ^ bv
-			pending.pop(i)
-			break
+    for i, ((a, op, b), out) in enumerate(pending):
+        if a in values and b in values:
+            av, bv = values[a], values[b]
+            match op:
+                case "AND": values[out] = av & bv
+                case "OR": values[out] = av | bv
+                case "XOR": values[out] = av ^ bv
+            pending.pop(i)
+            break
 
 print(f"Part 1: {int("".join(str(values[k]) for k in sorted(values)[::-1] if k.startswith("z")), 2)}")
 
@@ -51,32 +51,32 @@ in_type = defaultdict(set)
 out_type = defaultdict(set)
 
 for (a, op, b), d in gates:
-	a, b = sorted((a, b))
-	if a.startswith("x") and b.startswith("y"):
-		if a == "x00" and b == "y00":  # special case, x00 and y00 start the adder and were correct in my input
-			continue
-		out_type[d].add(WT.SUM_BIT if op == "XOR" else WT.CARRY_BIT)
-	else:
-		match op:
-			case "AND": type = WT.INT_CARRY
-			case "OR": type = WT.EXT_CARRY
-			case "XOR": type = WT.OUT
-		in_type[a].add(type)
-		in_type[b].add(type)
-		out_type[d].add(type)
+    a, b = sorted((a, b))
+    if a.startswith("x") and b.startswith("y"):
+        if a == "x00" and b == "y00":  # special case, x00 and y00 start the adder and were correct in my input
+            continue
+        out_type[d].add(WT.SUM_BIT if op == "XOR" else WT.CARRY_BIT)
+    else:
+        match op:
+            case "AND": type = WT.INT_CARRY
+            case "OR": type = WT.EXT_CARRY
+            case "XOR": type = WT.OUT
+        in_type[a].add(type)
+        in_type[b].add(type)
+        out_type[d].add(type)
 
 
 swaps = []
 for wire in out_type:
-	it = in_type[wire]
-	ot = out_type[wire]
+    it = in_type[wire]
+    ot = out_type[wire]
 
-	# if the wire doesn't obey the rules above
-	# z45 is a special case as it is the output of the last adder
-	if not (wire == "z45"
-			or not it and wire.startswith("z") and ot == {WT.OUT}
-			or it == {WT.OUT, WT.INT_CARRY} and (ot == {WT.SUM_BIT} or ot == {WT.EXT_CARRY})
-			or it == {WT.EXT_CARRY} and (ot == {WT.CARRY_BIT} or ot == {WT.INT_CARRY})):
-		swaps.append(wire)
+    # if the wire doesn't obey the rules above
+    # z45 is a special case as it is the output of the last adder
+    if not (wire == "z45"
+            or not it and wire.startswith("z") and ot == {WT.OUT}
+            or it == {WT.OUT, WT.INT_CARRY} and (ot == {WT.SUM_BIT} or ot == {WT.EXT_CARRY})
+            or it == {WT.EXT_CARRY} and (ot == {WT.CARRY_BIT} or ot == {WT.INT_CARRY})):
+        swaps.append(wire)
 
 print("Part 2: " + ",".join(sorted(swaps)))
