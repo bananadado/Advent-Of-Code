@@ -1,4 +1,5 @@
-Solutions for 2024 :)
+Solutions for 2024 :)\
+This feels like the easiest year I've done.
 
 I finally got some global leaderboard times this year!! (also you can see day 9 I start to lock in, no idea what was going on before that).\
 ![stats](https://github.com/bananadado/Advent-Of-Code/blob/main/2024/stats_2024.png?raw=true)
