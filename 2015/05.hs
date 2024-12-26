@@ -1,7 +1,6 @@
 import System.IO
 import Data.List
 
-
 threeVowels :: String -> Bool
 threeVowels s = (length $ filter (`elem` "aeiou") s) >= 3
 
