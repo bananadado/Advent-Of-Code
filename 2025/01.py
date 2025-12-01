@@ -9,14 +9,12 @@ cz = 0 #p1
 cpz = 0 #p2
 
 for d, l in inp:
-
     if d == 'L':
-        pos = (pos - l)
+        pos -= l
         if pos <= 0:
             cpz += abs(pos // 100)
-
     else:  # 'R'
-        pos = (pos + l)
+        pos += l
         if pos >= 100:
             cpz += pos // 100
 
