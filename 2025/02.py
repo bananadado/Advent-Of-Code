@@ -53,7 +53,7 @@ for total_len in range(2, max_digits + 1):
                         continue
                     if in_ranges(val):
                         p2 += val
-                    seen2.add(val)
+                seen2.add(val)
 
 print(f"Part 1: {p1}")
 print(f"Part 2: {p2}")
