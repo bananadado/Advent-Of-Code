@@ -1,22 +1,21 @@
 # very aoc day i was extremely ready for this kind of problem
 # first day of not completely selling
+from itertools import count
 with open("input.txt") as f:
-    inp = [[c for c in l.strip()] for l in f.readlines()]
+    inp = [list(l.strip()) for l in f.readlines()]
 
 H = len(inp)
 W = len(inp[0])
 
-dirs= [
+dirs = [
     (-1,-1), (-1,0), (-1,1),
     (0,-1),          (0,1),
     (1,-1), (1,0), (1,1),
 ]
 
 t = 0
-it = 0
 locs = set()
-while True:
-    it += 1
+for i in count():
     for r in range(H):
         for c in range(W):
             if inp[r][c] != "@":
@@ -30,16 +29,17 @@ while True:
             if count < 4:
                 t += 1
                 locs.add((r,c))
-    if len(locs) == 0:
+
+    if len(locs) == 0: # all unaccessible
         break
 
-    #overwriet inp
+    #overwrite inp
     for r, c in locs:
         inp[r][c] = "#"
-    locs = set()
+    locs.clear()
 
     # part 1
-    if it == 1:
+    if i == 0:
         print(f"Part 1: {t}")
 
 print(f"Part 2: {t}")
