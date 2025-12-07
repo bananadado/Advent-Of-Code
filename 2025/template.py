@@ -42,5 +42,13 @@ numsAsWords = {
     "nine": 9,
 }
 
+#from template import *
 #with open("input.txt","r") as f:
 #    inp = [line.strip() for line in f.readlines()]
+
+# useful imports
+# from collections import defaultdict, deque, Counter
+# import networkx as nx
+# from functools import cache, cmp_to_key
+# from itertools import combinations, permutations, count
+# from time import perf_counter
