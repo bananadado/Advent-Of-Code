@@ -20,7 +20,7 @@ p = prep(Polygon(inp))
 p1, p2 = 0, 0
 for x1, y1 in inp:
     for x2, y2 in inp:
-        area = abs(x1 - x2) * abs(y1 - y2)
+        area = (abs(x1 - x2) + 1) * (abs(y1 - y2) + 1)
         p1 = max(p1, area)
 
         if area <= p2:
