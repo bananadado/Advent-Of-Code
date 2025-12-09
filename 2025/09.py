@@ -10,25 +10,22 @@
 # i cannot actually think of a solution that runs fast enough without it - i might come back if i'm hit by some divine inspiration
 
 from shapely.geometry import Polygon, box
-from shapely.prepared import prep # improves execution time from 6 -> 3s on my machine
+from shapely.prepared import prep # improves execution time from 2.5 -> 1.3s on my machine
+from itertools import combinations
 
 with open("input.txt","r") as f:
    inp = [eval(line) for line in f.readlines()]
 
-p = prep(Polygon(inp))
+poly = prep(Polygon(inp))
 
-p1, p2 = 0, 0
-for x1, y1 in inp:
-    for x2, y2 in inp:
-        area = (abs(x1 - x2) + 1) * (abs(y1 - y2) + 1)
-        p1 = max(p1, area)
+# sort candidates first
+area = lambda p, q: (abs(p[0] - q[0]) + 1) * (abs(p[1] - q[1]) + 1)
+candidates = sorted(combinations(inp, 2), key=lambda x: area(*x), reverse=True)
 
-        if area <= p2:
-            continue
+print(f"Part 1: {area(*candidates[0])}")
 
-        rect = box(min(x1, x2), min(y1, y2), max(x1, x2), max(y1, y2))
-        if p.covers(rect):
-            p2 = max(p2, area)
-
-print(f"Part 1: {p1}")
-print(f"Part 2: {p2}")
+for (x1, y1), (x2, y2) in candidates:
+    rect = box(min(x1, x2), min(y1, y2), max(x1, x2), max(y1, y2))
+    if poly.covers(rect):
+        print(f"Part 2: {area((x1, y1), (x2, y2))}")
+        quit()
