@@ -17,7 +17,9 @@ I also think like teaching union find in problem 8 was cool.\
 The fun factor this year was decent. It was no spot the [christmas tree](https://adventofcode.com/2024/day/14) but like the problems were decently fun.\
 I, in particular, very much enjoyed day 7 which had a cool solution involving Pascal's triangle (which i didnt use), and I didn't enjoy day 10 that much - even though I spotted the linear programming over F2 in part 1 (scars from linalg midterm) - as I ended up just sticking the whole thing in z3. I did, however, see an extremely cool [solution](https://www.reddit.com/r/adventofcode/s/h06kErDA9i) for the problem in the subreddit. I also feel like I could've had more fun doing 9 if I wasn't scrambling for time - its a fun problem I was just panicking a bit!! \
 Day 12 also could have been quite interesting but the input was quite disappointing. \
-![fun](images/fun.png)
+![fun](images/fun.png)  
 
+Obligatory personal times below:
+![times](images/times.png)
 
 Tierlists, as always made with [@ZaDukk](https://github.com/ZaDukk) and [@Flameded](https://github.com/Flameded).
